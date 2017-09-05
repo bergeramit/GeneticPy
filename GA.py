@@ -1,8 +1,12 @@
 import random
 import string
 
+# target = the word the algorithm searches
+# sizeSTR = size of target
 sizeSTR = 5
 target = "hello"
+
+#the basic gene struct
 class ga_struct:
     def __init__(self):
         self.str =""
@@ -11,7 +15,7 @@ class ga_struct:
             self.str = self.str + a
         self.fitness=0
 
-
+#calculate and update fitness 
 def updateFitness(ga_str):
     fitness = 5
     for i in xrange(0,sizeSTR):
@@ -26,6 +30,7 @@ def calcFitness(ga_list):
 def compareFit(ga_st):
     return ga_st.fitness
 
+#mutate gene by randomly selecting a place to insert randome letter at 
 def mutate(ga_str):
     num = random.randint(0, sizeSTR-1)
     a = random.choice(string.ascii_letters).lower()
@@ -33,7 +38,7 @@ def mutate(ga_str):
     l[num] = a
     ga_str.str = ''.join(l)
 
-    
+#mate two genes using One Point Crossover
 def mate(ga_list):
     for i in range(20,len(ga_list)):
         num = random.randint(0, sizeSTR-1)
@@ -48,7 +53,7 @@ def mate(ga_list):
         if random.randint(0, sizeSTR-1) == 2:
             mutate(ga_list[i])
 
-
+#main area TODO: add def main():
 ga_list = []
 for i in range(1,2000):
     a = ga_struct()
